@@ -54,5 +54,23 @@ public class StringCalculator {
         return sum;
     }
 
+    public int addWithCustomDelimiter(String numbers){
+        if (numbers.isEmpty()) {
+            return 0;
+        }
+        String delimiter = ",|\n";
+        if (numbers.startsWith("//")) {
+            int delimiterIndex = numbers.indexOf("\n");
+            delimiter = numbers.substring(2, delimiterIndex);
+            numbers = numbers.substring(delimiterIndex + 1);
+        }
+        String[] parts = numbers.split(delimiter);
+        int sum = 0;
+        for (String part : parts) {
+            sum += Integer.parseInt(part);
+        }
+        return sum;
+    }
+
 
 }
