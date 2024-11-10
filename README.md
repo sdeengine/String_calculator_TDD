@@ -18,3 +18,4 @@ This project is a String Calculator implemented using Test-Driven Development (T
 
 1. **Clone the repository**:
    git clone https://github.com/sdeengine/String_calculator_TDD.git
+2. **Local branch** : git 
