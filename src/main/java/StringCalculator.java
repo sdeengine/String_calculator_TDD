@@ -16,6 +16,7 @@ public class StringCalculator {
         return Integer.parseInt(numbers);
     }
 
+    // 2 elements as input with comma separated
     public int addTwoNumbers(String numbers){
         if (numbers.isEmpty()) {
             return 0;
@@ -25,6 +26,19 @@ public class StringCalculator {
             return Integer.parseInt(parts[0]);
         }
         return Integer.parseInt(parts[0]) + Integer.parseInt(parts[1]);
+    }
+
+    // multiple elements as input with comma separated
+    public int addMultipleNumbers(String numbers){
+        if (numbers.isEmpty()) {
+            return 0;
+        }
+        String[] parts = numbers.split(",");
+        int sum = 0;
+        for (String part : parts) {
+            sum += Integer.parseInt(part);
+        }
+        return sum;
     }
 
 }

@@ -18,7 +18,13 @@ public class StringCalculatorTest {
     @Test
     void testAddTwoNumbers() {
         StringCalculator calculator = new StringCalculator();
-        assertEquals(3, calculator.addTwoNumbers("1,2"));  // Expected 3 when input is "1,2"
+        assertEquals(3, calculator.addTwoNumbers("1,2"));
+    }
+
+    @Test
+    void testAddMultipleNumbers() {
+        StringCalculator calculator = new StringCalculator();
+        assertEquals(6, calculator.addMultipleNumbers("1,2,3"));
     }
 
 }
