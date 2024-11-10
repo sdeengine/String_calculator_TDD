@@ -41,4 +41,18 @@ public class StringCalculator {
         return sum;
     }
 
+    //Test New Lines as Delimiters
+    public int addWithNewLineDelimiter(String numbers) {
+        if (numbers.isEmpty()) {
+            return 0;
+        }
+        String[] parts = numbers.split("[,\n]");
+        int sum = 0;
+        for (String part : parts) {
+            sum += Integer.parseInt(part);
+        }
+        return sum;
+    }
+
+
 }
