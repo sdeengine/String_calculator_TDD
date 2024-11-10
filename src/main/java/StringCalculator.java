@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -82,29 +83,26 @@ public class StringCalculator {
          if (numbers.isEmpty()) {
              return 0;
          }
-
          String delimiter = ",|\n";
          if (numbers.startsWith("//")) {
              int delimiterIndex = numbers.indexOf("\n");
              delimiter = numbers.substring(2, delimiterIndex);
              numbers = numbers.substring(delimiterIndex + 1);
          }
-
-         List<Integer> parts = Stream.of(numbers.split(delimiter))
-                 .map(Integer::parseInt)
-                 .toList();
-
-         List<Integer> negatives = parts.stream()
-                 .filter(n -> n < 0)
-                 .toList();
-
-         if (!negatives.isEmpty()) {
-             throw new IllegalArgumentException("Negatives not allowed: " + negatives);
+         String[] parts = numbers.split(delimiter);
+         int sum = 0;
+         List<String> negatives = new ArrayList<>();
+         for (String part : parts) {
+             int number = Integer.parseInt(part);
+             if (number < 0) {
+                 negatives.add(part);
+             }
+             sum += number;
          }
-
-         return parts.stream()
-                 .mapToInt(Integer::intValue)
-                 .sum();
+         if (!negatives.isEmpty()) {
+             throw new IllegalArgumentException("negatives not allowed: " + String.join(", ", negatives));
+         }
+         return sum;
      }
 
 }
