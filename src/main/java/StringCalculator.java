@@ -1,3 +1,7 @@
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class StringCalculator {
 
     // Empty String input
@@ -54,6 +58,7 @@ public class StringCalculator {
         return sum;
     }
 
+    //Custom delimiter as input
     public int addWithCustomDelimiter(String numbers){
         if (numbers.isEmpty()) {
             return 0;
@@ -72,5 +77,34 @@ public class StringCalculator {
         return sum;
     }
 
+     // Throw Exception for Negative Numbers
+     public int addWithNegativeNumbers(String numbers){
+         if (numbers.isEmpty()) {
+             return 0;
+         }
+
+         String delimiter = ",|\n";
+         if (numbers.startsWith("//")) {
+             int delimiterIndex = numbers.indexOf("\n");
+             delimiter = numbers.substring(2, delimiterIndex);
+             numbers = numbers.substring(delimiterIndex + 1);
+         }
+
+         List<Integer> parts = Stream.of(numbers.split(delimiter))
+                 .map(Integer::parseInt)
+                 .toList();
+
+         List<Integer> negatives = parts.stream()
+                 .filter(n -> n < 0)
+                 .toList();
+
+         if (!negatives.isEmpty()) {
+             throw new IllegalArgumentException("Negatives not allowed: " + negatives);
+         }
+
+         return parts.stream()
+                 .mapToInt(Integer::intValue)
+                 .sum();
+     }
 
 }
